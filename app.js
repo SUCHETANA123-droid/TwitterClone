@@ -3,11 +3,13 @@ const app = express();
 const port = 3003;
 const middleware = require("./middleware");
 const path = require('path')
+const bodyParser=require('body-parser');
 
 const server = app.listen(port, () => console.log("Twitter working" + port));
 app.set("view engine", "pug");
 app.set("views", "views");
 //routes
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, "public")));
 
 const loginRoute = require('./routes/loginRoutes');
